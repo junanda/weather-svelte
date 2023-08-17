@@ -4,10 +4,10 @@
     import InfoWeather from '$lib/components/InfoWeather.svelte';
     import './style.css'
 
-    let dataCuaca;
+    let dataCuaca={};
     let p='';
     let size = 105;
-    let visible = false;
+    let visible = true;
 
     async function searchWeather(p) {
         const req = await fetch(`/api/weather/${p}`)
@@ -42,9 +42,11 @@
     
     {#if visible}
         <Error404 data={dataCuaca}/>
+    {:else}
+        <InfoWeather visible={visible} dataInfo={dataCuaca}/>
     {/if}
 
-    <InfoWeather visible={visible} dataInfo={dataCuaca}/>
+    <!-- <InfoWeather visible={visible} dataInfo={dataCuaca}/> -->
     
 </div>
 
